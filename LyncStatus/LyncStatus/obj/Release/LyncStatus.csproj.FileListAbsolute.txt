@@ -57,3 +57,6 @@ C:\proj\tmp\LyncStatus\LyncStatus\bin\Release\zh-tw\Microsoft.Lync.Controls.Fram
 C:\proj\tmp\LyncStatus\LyncStatus\obj\Release\LyncStatus.csprojResolveAssemblyReference.cache
 C:\proj\tmp\LyncStatus\LyncStatus\obj\Release\LyncStatus.exe
 C:\proj\tmp\LyncStatus\LyncStatus\obj\Release\LyncStatus.pdb
+C:\proj\src\lyncstatus\LyncStatus\LyncStatus\bin\Release\LyncStatus.exe.config
+C:\proj\src\lyncstatus\LyncStatus\LyncStatus\obj\Release\LyncStatus.exe
+C:\proj\src\lyncstatus\LyncStatus\LyncStatus\obj\Release\LyncStatus.pdb
