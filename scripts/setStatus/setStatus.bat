@@ -6,7 +6,7 @@ REM 3. python -m fortune -u f.txt
 REM
 
 :loop
-bash -c "../../LyncStatus/LyncStatus.exe -n ""$(fortune f.txt )"""
+bash -c "LyncStatus/LyncStatus.exe -n ""$(fortune f.txt )"""
 sleep 250
 goto loop
 pause

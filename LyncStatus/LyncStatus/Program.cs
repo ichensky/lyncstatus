@@ -12,7 +12,7 @@ namespace LyncBot
     {
         static void Main(string[] args)
         {
-            args = new string[] { "-c", "-cs", "--json" };
+            //args = new string[] { "-c", "-cs", "--json" };
 
             var initData = new InitData();
             var statusCode = initData.Init(args);
