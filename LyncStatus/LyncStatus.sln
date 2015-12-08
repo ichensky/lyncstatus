@@ -5,6 +5,10 @@ VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LyncStatus", "LyncStatus\LyncStatus.csproj", "{3FC29C4E-1756-43D6-A95D-02BC53CE9B2B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LyncSpy", "LyncSpy\LyncSpy.csproj", "{D998C25B-1A52-4BE9-A618-55A557848068}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LyncLib", "LyncLib\LyncLib.csproj", "{D1C7EEC0-21C3-42D1-BE69-7140AB0C8DA2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{3FC29C4E-1756-43D6-A95D-02BC53CE9B2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3FC29C4E-1756-43D6-A95D-02BC53CE9B2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3FC29C4E-1756-43D6-A95D-02BC53CE9B2B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D998C25B-1A52-4BE9-A618-55A557848068}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D998C25B-1A52-4BE9-A618-55A557848068}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D998C25B-1A52-4BE9-A618-55A557848068}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D998C25B-1A52-4BE9-A618-55A557848068}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1C7EEC0-21C3-42D1-BE69-7140AB0C8DA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1C7EEC0-21C3-42D1-BE69-7140AB0C8DA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1C7EEC0-21C3-42D1-BE69-7140AB0C8DA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1C7EEC0-21C3-42D1-BE69-7140AB0C8DA2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

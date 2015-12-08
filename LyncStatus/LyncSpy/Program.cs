@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LyncStatus.Models
+namespace LyncSpy
 {
-    public enum PrintFormat
+    class Program
     {
-        None = 0,
-        Json = 1,
-        Xml = 2
+        static void Main(string[] args)
+        {
+        }
     }
 }

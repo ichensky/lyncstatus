@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LyncStatus.Models
+namespace LyncLib.Models
 {
     public class Contact
     {

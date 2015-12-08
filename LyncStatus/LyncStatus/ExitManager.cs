@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using LyncStatus.Helpers;
+using LyncLib;
+using LyncLib.Helpers;
 
 namespace LyncStatus
 {
@@ -40,10 +42,10 @@ namespace LyncStatus
         {
             var flags = _initData.Flags;
 
-            var contacts = new List<Models.Contact> ();
+            var contacts = new List<LyncLib.Models.Contact> ();
             foreach (var item in e)
             {
-                contacts.Add(new Models.Contact()
+                contacts.Add(new LyncLib.Models.Contact()
                 {
                     Status = flags.ContactStatus == 1 ? GetContactAvailability(item) : ContactAvailability.Invalid,
                     Uri = item.Uri,
@@ -51,7 +53,7 @@ namespace LyncStatus
 
             }
 
-            if (flags.Format == Models.PrintFormat.Json)
+            if (flags.Format == LyncLib.Models.PrintFormat.Json)
             {
                 var str = Newtonsoft.Json.JsonConvert.SerializeObject(contacts);
                 Console.WriteLine(str);

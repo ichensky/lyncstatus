@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LyncStatus.Helpers
+namespace LyncLib.Helpers
 {
     public static class EnumHelper
     {

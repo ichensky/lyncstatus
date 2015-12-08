@@ -1,4 +1,4 @@
-﻿using LyncStatus.Models;
+﻿using LyncLib.Models;
 using Microsoft.Lync.Model;
 using System;
 using System.Collections.Generic;
