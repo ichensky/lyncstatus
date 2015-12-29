@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LyncLib.Models
 {
-    public class Contact
+    public class ContactState
     {
         public string Uri { get; set; }
         public ContactAvailability Status { get; set; }

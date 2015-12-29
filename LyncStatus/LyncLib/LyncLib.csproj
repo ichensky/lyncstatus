@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ContactsManager.cs" />
+    <Compile Include="Helpers\ContactHelper.cs" />
     <Compile Include="Helpers\EnumHelper.cs" />
     <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\PrintFormat.cs" />

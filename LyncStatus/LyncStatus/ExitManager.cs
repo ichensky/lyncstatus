@@ -41,13 +41,15 @@ namespace LyncStatus
         void contactsManager_AllContactsLoaded(object sender, List<Contact> e)
         {
             var flags = _initData.Flags;
-
-            var contacts = new List<LyncLib.Models.Contact> ();
+            var contactHelper = new ContactHelper();
+            var contacts = new List<LyncLib.Models.ContactState> ();
             foreach (var item in e)
             {
-                contacts.Add(new LyncLib.Models.Contact()
+                contacts.Add(new LyncLib.Models.ContactState()
                 {
-                    Status = flags.ContactStatus == 1 ? GetContactAvailability(item) : ContactAvailability.Invalid,
+                    Status = flags.ContactStatus == 1 
+                    ? contactHelper.GetContactAvailability(item) 
+                    : ContactAvailability.Invalid,
                     Uri = item.Uri,
                 });
 
@@ -92,14 +94,9 @@ namespace LyncStatus
             var flags = _initData.Flags;
             if (flags.ContactStatus == 1)
             {
-                Console.WriteLine(GetContactAvailability(contact).ToString());                
+                var contactHelper = new ContactHelper();
+                Console.WriteLine(contactHelper.GetContactAvailability(contact).ToString());                
             }
-        }
-
-        private ContactAvailability GetContactAvailability(Contact contact)
-        {
-            var status = contact.GetContactInformation(ContactInformationType.Availability).Cast<ContactAvailability>();
-            return status; 
         }
 
         public void Error()
