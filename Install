@@ -1,11 +1,22 @@
 DB Instalation
 
-   * Install postgresql.
-   * Update config files: /etc/postgresql
-   * Add user, database:
-     
+   * Install postgresql
+
+   * Change passwd for superadmin
+       $ passwd postgres
+       $ su postgres
+       $ psql
+       $ \password
+
+   * Update config files: /etc/postgresql/*
+       local all postgres md5
+       # TYPE DATABASE USER ADDRESS METHOD
+       # "local" is for Unix domain socket connections only
+       local all all md5
+
    * Update ~/.pgpass:
-      * Add entity:
-      	hostname:port:database:username:password
-      * $ chmod 0600 ~/.pgpass
+       $ echo "hostname:port:database:username:password" >> ~/.pgpass
+       $ echo "localhost:port:*:postgres:password" >> ~/.pgpass
+       $ chmod 0600 ~/.pgpass
+       $ service postgresql restart
    

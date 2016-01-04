@@ -1,17 +1,41 @@
 # local qa staging prod
 type=local
-pgpass_filename=~/.pgpass
 
-include etc/*.cfg
-include etc/usr/*.cfg
+# path to default config files
+cfg=etc/*.cfg
+# path to user config files
+cfg_usr=etc/usr/$(type)/*.cfg
 
-pgpass_entity=$(db_hostname):$(db_port):$(db_database):$(db_username):
-sql=$(psql -h host -p 5432 -U lyncspy -d lyncspydb)
+include $(cfg)
+-include $(cfg_usr)
 
-all:
+pgpass_file=~/.pgpass
+pgpass_user=$(db_hostname):$(db_port):$(db_database):$(db_username):
+
+db_superuserpassword=$(shell cat $(pgpass_file) | \
+	grep "$(db_hostname):$(db_port)" | \
+	grep ":$(db_superusername):" | grep -oE "[^:]+$$")
+
+db_userpassword=$(shell cat $(pgpass_file) | \
+	grep $(pgpass_user) | grep -oE "[^:]+$$")
+
+ssql=psql -h $(db_hostname) -p $(db_port) -U $(db_superusername)
+
+all: db_createuser
+	echo "TODO:"
 
 db_createuser:
-	pass=$(shell cat $(pgpass_filename) | \
-	grep $(pgpass_entity) | \
-	sed s/$(pgpass_entity)//g)
-	echo ${pass}
+	$(ssql) -c \
+	"create user $(db_username) with password '$(db_userpassword)'"
+
+db_dropuser:
+	$(ssql) -c \
+	"drop user $(db_username)"
+
+db_createdatabase:
+	$(ssql) -c \
+	"create database $(db_database)"
+
+db_granduser:
+	$(ssql) -c \
+	"grant all privileges on database $(db_database) to $(db_username)"
