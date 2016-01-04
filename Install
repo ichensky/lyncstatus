@@ -1,0 +1,11 @@
+DB Instalation
+
+   * Install postgresql.
+   * Update config files: /etc/postgresql
+   * Add user, database:
+     
+   * Update ~/.pgpass:
+      * Add entity:
+      	hostname:port:database:username:password
+      * $ chmod 0600 ~/.pgpass
+   
