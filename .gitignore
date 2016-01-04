@@ -1,3 +1,6 @@
+# Config-specific files
+/etc/usr/*
+
 # User-specific files
 *.suo
 *.user
