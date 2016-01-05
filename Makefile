@@ -6,6 +6,8 @@ cfg=etc/*.cfg
 # path to user config files
 cfg_usr=etc/usr/$(type)/*.cfg
 
+src=src
+
 include $(cfg)
 -include $(cfg_usr)
 

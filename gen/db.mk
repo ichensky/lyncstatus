@@ -13,7 +13,7 @@ db_userpassword=$(shell cat $(pgpass_file) | \
 ssql=psql -h $(db_hostname) -p $(db_port) -U $(db_superusername)
 sql=psql -h $(db_hostname) -p $(db_port) -U $(db_username) -d $(db_database)
 
-db=db
+db=$(src)/db
 db_migrations_file=$(db)/migrations.sql
 
 all: 
