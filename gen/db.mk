@@ -11,7 +11,10 @@ db_userpassword=$(shell cat $(pgpass_file) | \
 	grep $(pgpass_user) | grep -oE "[^:]+$$")
 
 ssql=psql -h $(db_hostname) -p $(db_port) -U $(db_superusername)
-sql=psql -h $(db_hostname) -p $(db_posrt) -U $(db_username) -d $(db_database)
+sql=psql -h $(db_hostname) -p $(db_port) -U $(db_username) -d $(db_database)
+
+db=db
+db_migrations_file=$(db)/migrations.sql
 
 all: 
 	echo "TODO:"
@@ -42,3 +45,6 @@ db_kill_connections:
 	where pg_stat_activity.datname='$(db_database)'"
 
 db_recreate_database: db_drop_database db_create_database db_grand_user
+
+db_apply_migrations:
+	$(sql) -f $(db_migrations_file)

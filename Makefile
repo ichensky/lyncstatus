@@ -9,4 +9,4 @@ cfg_usr=etc/usr/$(type)/*.cfg
 include $(cfg)
 -include $(cfg_usr)
 
-include build/db.mk
+include gen/db.mk
