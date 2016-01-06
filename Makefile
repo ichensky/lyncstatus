@@ -7,8 +7,10 @@ cfg=etc/*.cfg
 cfg_usr=etc/usr/$(type)/*.cfg
 
 src=src
+test=test
 
 include $(cfg)
 -include $(cfg_usr)
 
 include gen/db.mk
+include gen/db_testdata.mk

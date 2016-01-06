@@ -15,6 +15,7 @@ sql=psql -h $(db_hostname) -p $(db_port) -U $(db_username) -d $(db_database)
 
 db=$(src)/db
 db_migrations_file=$(db)/migrations.sql
+testdata=$(test)/db/testdata
 
 all: 
 	echo "TODO:"

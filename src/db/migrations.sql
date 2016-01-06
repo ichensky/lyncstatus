@@ -51,7 +51,7 @@ create or replace function update_migrations(arg_comment varchar(200), arg_creat
 insert into migrations values(default, arg_comment, arg_createdate);
     end if;
 
-    return 1;
+    return flag;
     end;
     $$ language plpgsql
     volatile
@@ -65,7 +65,7 @@ insert into migrations values(default, arg_comment, arg_createdate);
 
 select into flag update_migrations('Add init structure of database', timestamp '01-01-2016');
 
-    if flag = 0 then
+    if flag <> 0 then
 create table status(
 	id serial primary key,
 	name varchar(50) not null
