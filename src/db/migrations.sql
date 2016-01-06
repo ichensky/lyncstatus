@@ -63,12 +63,13 @@ insert into migrations values(default, arg_comment, arg_createdate);
     do $$declare flag int;
     begin
 
-select into flag update_migrations('Add init structure of database', timestamp '01-01-2016');
+select into flag update_migrations('database init structure', timestamp '05-01-2016');
 
     if flag <> 0 then
 create table status(
 	id serial primary key,
-	name varchar(50) not null
+	name varchar(50) not null,
+	description varchar(250) 
 	);
 
 create table contact(
@@ -98,3 +99,31 @@ create table contactstateattimeline(
     end if;
 
     end$$;
+
+    ----------------------------------------------------------------------------  
+   
+    do $$declare flag int;
+    begin
+
+select into flag update_migrations('basic data', timestamp '06-01-2016');
+
+    if flag <> 0 then
+
+insert into status values(-1, 'invalid', '');
+
+    end if;
+
+    end$$;
+
+--    ----------------------------------------------------------------------------  
+--   
+--    do $$declare flag int;
+--    begin
+--
+--select into flag update_migrations('Add init structure of database', timestamp '05-01-2016');
+--
+--    if flag <> 0 then
+--
+--    end if;
+--
+--    end$$;

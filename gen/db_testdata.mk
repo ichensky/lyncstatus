@@ -12,9 +12,13 @@ test_db=$(test)/db
 testdata=$(test_db)/testdata
 
 ## GEN
+db_test_gen: db_test_gen_contacts
+
 db_test_gen_contacts: 
 	sh $(testdata)/gen_contacts.sh
 
 ## Execute
+db_test_apply: db_test_apply_contacts
+
 db_test_apply_contacts:
 	$(sql) -f $(testdata)/contacts.sql
