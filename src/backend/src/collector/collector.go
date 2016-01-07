@@ -4,6 +4,7 @@ import (
 	//"bufio"
 	"database/sql"
 	"fmt"
+	//_ "github.com/BurntSushi/toml"
 	_ "github.com/lib/pq"
 	//"io/ioutil"
 	//"log"
@@ -13,6 +14,7 @@ import (
 )
 
 type Config struct {
+	pgpass string
 	Pgpass *pgpass.Pgpass
 }
 
@@ -39,7 +41,7 @@ func ReadConfig() *Config {
 // main ...
 func main() {
 	c := ReadConfig()
-	pgpass.Read(c.Pgpass)
+	pgpass.InitPassword(c.Pgpass)
 	fmt.Println(c.Pgpass)
 
 	db, err := sql.Open("postgres",

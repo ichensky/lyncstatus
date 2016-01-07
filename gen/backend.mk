@@ -12,4 +12,5 @@ backend_build_collector:
 backend_get_packages:
 	echo $(GOPATH)
 	go get -d -u -v github.com/lib/pq
+	go get -d -u -v github.com/BurntSushi/toml
 

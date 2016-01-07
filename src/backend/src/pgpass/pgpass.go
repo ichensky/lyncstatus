@@ -20,7 +20,7 @@ func parsePassword(str string, line string) string {
 }
 
 // Read ...
-func Read(pgpass *Pgpass) error {
+func InitPassword(pgpass *Pgpass) error {
 	home := os.Getenv("HOME")
 	file, err := os.Open(home + "/.pgpass")
 	if err != nil {
