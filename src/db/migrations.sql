@@ -65,7 +65,7 @@ insert into migrations values(default, arg_comment, arg_createdate);
 
 select into flag update_migrations('database init structure', timestamp '05-01-2016');
 
-    if flag <> 0 then
+    if flag = 0 then
 create table status(
 	id serial primary key,
 	name varchar(50) not null,
@@ -77,22 +77,11 @@ create table contact(
 	uri varchar(1024) unique not null
 	);
 
--- contact state in time moment
-create table contactstate(
+create table state(
 	id serial primary key,
 	contactid int not null,
 	statusid int not null,
-	statedate timestamp, -- eps=1min
-	foreign key (contactid) references contact(id),
-	foreign key (statusid) references status(id)
-	);
-
--- contact state at timeline
-create table contactstateattimeline(
-	id serial primary key,
-	contactid int not null,
-	statusid int not null,
-	changedate timestamp not null,
+	chagedate timestamp,
 	foreign key (contactid) references contact(id),
 	foreign key (statusid) references status(id)
 	);
@@ -107,9 +96,26 @@ create table contactstateattimeline(
 
 select into flag update_migrations('basic data', timestamp '06-01-2016');
 
-    if flag <> 0 then
+    if flag = 0 then
 
-insert into status values(-1, 'invalid', '');
+insert into status (id,name,description)
+    values(-1, 'invalid', '');
+insert into status (id,name,description)
+    values (default, 'free', 'the contact is available');
+insert into status (id,name,description)
+    values (default, 'freeidle', 'idle states are machine state');
+insert into status (id,name,description)
+    values (default, 'busy', 'the contact is busy and inactive');
+insert into status (id,name,description)
+    values (default, 'busyidle', 'idle states are machine state');
+insert into status (id,name,description)
+    values (default, 'donotdisturb', 'the contact does not want to be disturbed');
+insert into status (id,name,description)
+    values (default, 'temporarilyaway', 'the contact is temporarily un-alertable');
+insert into status (id,name,description)
+    values (default, 'away', 'the contact can not be alerted');
+insert into status (id,name,description)
+    values (default, 'offline', 'the contact is not available');
 
     end if;
 
