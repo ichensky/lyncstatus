@@ -10,16 +10,16 @@ begin
 for contact_id in 
 select id from contact
 loop
-raise notice 'befor:(%)', contact_id;
+raise notice 'processing contact_id:(%)', contact_id;
 i:=0;
-while i != 60*24/3 loop
+while i != 60*24*31*5/3 loop
 
 select id into status_id 
 from status 
 order by random()
 limit 1;
 
-changedate:= now()-'1 minute'::interval*round(random()*60*24);
+changedate:= now()-'1 minute'::interval*round(random()*60*24*31*5);
 insert into state values(default, contact_id, status_id, changedate);
 
 

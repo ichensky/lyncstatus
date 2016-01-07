@@ -6,11 +6,18 @@ cfg=etc/*.cfg
 # path to user config files
 cfg_usr=etc/usr/$(type)/*.cfg
 
+gen=gen
 src=src
 test=test
+backend=$(src)/backend
+
+GOPATH:=${PWD}/$(backend)/packages
+export GOPATH
 
 include $(cfg)
 -include $(cfg_usr)
 
-include gen/db.mk
-include gen/db_testdata.mk
+include $(gen)/db.mk
+include $(gen)/db_testdata.mk
+
+include $(gen)/backend.mk
