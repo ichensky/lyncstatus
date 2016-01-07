@@ -17,7 +17,7 @@ begin
 for contact_id in 
 select id from contact
 loop
-raise notice 'befor:(%)', contact_id;
+raise notice 'processing contact_id:(%)', contact_id;
 i:=0;
 while i != $length loop
 
