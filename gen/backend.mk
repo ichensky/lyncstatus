@@ -1,5 +1,15 @@
 backend_build:
-	go build -v -o $(backend)/bin/collector $(backend)/src/collector/main.go 
+	echo "TODO:"
 
-backend_packages_get:
+backend_build_libs:
+	go build -v -x -o $(backend)/bin/pgpass $(backend)/src/pgpass/pgpass.go
+
+backend_build_collector:
+	go build -v -o $(backend)/bin/collector $(backend)/src/collector/collector.go 
+
+
+
+backend_get_packages:
+	echo $(GOPATH)
 	go get -d -u -v github.com/lib/pq
+

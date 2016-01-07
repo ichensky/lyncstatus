@@ -11,7 +11,7 @@ src=src
 test=test
 backend=$(src)/backend
 
-GOPATH:=${PWD}/$(backend)/packages
+GOPATH:=${PWD}/$(backend)/packages:${PWD}/$(backend)
 export GOPATH
 
 include $(cfg)
