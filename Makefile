@@ -27,17 +27,23 @@ include $(gen)/db_testdata.mk
 
 include $(gen)/backend.mk
 
+all: get build
+
 build: backend_build
 
 get: backend_get_packages
 
-dist:
-	mkdir -vp dist
-	cp -vr $(backend)/bin dist
-	cp -vr $(backend)/etc dist
+install:
+	cp -vr $(dist)/* $(prefix) 
 
-clean_dist:
-	rm -rf dist
+dist:
+	mkdir -vp $(dist)
+	cp -vr $(backend)/bin $(dist)
+	cp -vr $(backend)/etc $(dist)
 
 clean: clean_dist backend_clean
-	rm -rf bin dist
+	rm -rf bin $(dist)
+
+clean_dist:
+	rm -rf $(dist)
+

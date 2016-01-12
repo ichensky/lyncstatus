@@ -17,9 +17,6 @@ db=$(src)/db
 db_migrations_file=$(db)/migrations.sql
 testdata=$(test)/db/testdata
 
-all: 
-	echo "TODO:"
-
 db_create_user:
 	$(ssql) -c \
 	"create user $(db_username) \
