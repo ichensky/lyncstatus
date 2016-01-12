@@ -65,8 +65,13 @@ func readConfigPgpass(str string) (*Pgpass, error) {
 // readConfig ...
 func ReadConfig() (*Config, error) {
 	c := new(Config)
+	filename := "collector.cfg"
 
-	file, err := os.Open("collector.cfg")
+	file, err := os.Open("../etc/usr" + filename)
+	if os.IsNotExist(err) {
+		file, err = os.Open("../etc/" + filename)
+	}
+
 	if err != nil {
 		return nil, err
 	}
