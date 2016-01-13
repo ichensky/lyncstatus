@@ -1,26 +1,44 @@
-
-
 pgpass_file=~/.pgpass
-pgpass_user=$(db_hostname):$(db_port):$(db_database):$(db_username):
 
-db_superuserpassword=$(shell cat $(pgpass_file) | \
-	grep "$(db_hostname):$(db_port)" | \
-	grep ":$(db_superusername):" | grep -oE "[^:]+$$")
+db_hostname=$(shell echo $(db_pgpass) | awk -F: '{ print $$1 }') 
+db_port=$(shell echo $(db_pgpass) | awk -F: '{ print $$2 }') 
+db_database=$(shell echo $(db_pgpass) | awk -F: '{ print $$3 }') 
+db_username=$(shell echo $(db_pgpass) | awk -F: '{ print $$4 }') 
 
-db_userpassword=$(shell cat $(pgpass_file) | \
-	grep $(pgpass_user) | grep -oE "[^:]+$$")
+db_shostname=$(shell echo $(db_spgpass) | awk -F: '{ print $$1 }') 
+db_sport=$(shell echo $(db_spgpass) | awk -F: '{ print $$2 }') 
+db_sdatabase=$(shell echo $(db_spgpass) | awk -F: '{ print $$3 }') 
+db_susername=$(shell echo $(db_spgpass) | awk -F: '{ print $$4 }') 
 
-ssql=psql -h $(db_hostname) -p $(db_port) -U $(db_superusername)
+db_password=$(shell cat $(pgpass_file) | \
+	grep -F $(db_pgpass) | grep -oE "[^:]+$$")
+
+db_spassword=$(shell cat $(pgpass_file) | \
+	grep -F $(db_spgpass) | grep -oE "[^:]+$$")
+
+ssql=psql -h $(db_shostname) -p $(db_sport) -U $(db_susername)
 sql=psql -h $(db_hostname) -p $(db_port) -U $(db_username) -d $(db_database)
 
 db=$(src)/db
 db_migrations_file=$(db)/migrations.sql
 testdata=$(test)/db/testdata
 
+db_info:
+	@echo "host: "$(db_hostname) "\n"\
+	"port: "$(db_port) "\n"\
+	"database: "$(db_database) "\n"\
+	"username: "$(db_username) "\n"\
+	"password: "$(db_password) "\n"\
+	"shost: "$(db_shostname) "\n"\
+	"sport: "$(db_sport) "\n"\
+	"sdatabase: "$(db_sdatabase) "\n"\
+	"susername: "$(db_susername) "\n"\
+	"spassword: "$(db_spassword)
+
 db_create_user:
 	$(ssql) -c \
 	"create user $(db_username) \
-	with password '$(db_userpassword)'"
+	with password '$(db_password)'"
 
 db_drop_user:
 	$(ssql) -c "drop user $(db_username)"

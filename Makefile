@@ -47,3 +47,6 @@ clean: clean_dist backend_clean
 clean_dist:
 	rm -rf $(dist)
 
+
+info:
+	echo $$(set)
