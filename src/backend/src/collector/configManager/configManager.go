@@ -46,7 +46,7 @@ func readPasswordFromPgpass(line string) (string, error) {
 
 	return "", scanner.Err()
 }
-func readConfigPgpass(str string) (*Pgpass, error) {
+func readPgpass(str string) (*Pgpass, error) {
 	s := strings.Split(str, ":")
 	if len(s) != 5 {
 		return nil, errors.New("Config value `pgpass` is not valid.")
@@ -62,11 +62,18 @@ func readConfigPgpass(str string) (*Pgpass, error) {
 	return &p, nil
 }
 
+func ConectionString(pgpass *Pgpass) string {
+	return "host=" + pgpass.Host +
+		"port=" + pgpass.Port +
+		"user=" + pgpass.Username +
+		"password=" + pgpass.Password
+}
+
 // readConfig ...
-func ReadConfig(filename string) (*Config, error) {
+func ReadDbConfig(filename string) (*Config, error) {
 	c := new(Config)
 
-	file, err := os.Open("../etc/usr" + filename)
+	file, err := os.Open("../usr/etc/" + filename)
 	if os.IsNotExist(err) {
 		file, err = os.Open("../etc/" + filename)
 	}
@@ -78,13 +85,13 @@ func ReadConfig(filename string) (*Config, error) {
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
 		str := scanner.Text()
-		key := "pgpass="
+		key := "db_pgpass="
 		index := strings.Index(str, key)
 		if index == -1 {
 			return nil, errors.New("Config file doesn't contains: " + key)
 		} else if index == 0 {
 			value := str[len(key):]
-			pgpass, err := readConfigPgpass(value)
+			pgpass, err := readPgpass(value)
 			if err != nil {
 				return nil, err
 			}

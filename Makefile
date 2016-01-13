@@ -1,16 +1,14 @@
 # local qa staging prod
-type=local
-
 prefix=/usr/local
 
 bin=bin
 etc=etc
-etc_usr=$(etc)/usr
+usr_etc=usr/$(etc)
 
 # path to default config files
 cfg=$(etc)/*.cfg
 # path to user config files
-cfg_usr=$(etc_usr)/$(type)/*.cfg
+usr_cfg=$(usr_etc)/*.cfg
 
 dist=dist
 gen=gen
@@ -20,7 +18,7 @@ backend=$(src)/backend
 
 
 include $(cfg)
--include $(cfg_usr)
+-include $(usr_cfg)
 
 include $(gen)/db.mk
 include $(gen)/db_testdata.mk

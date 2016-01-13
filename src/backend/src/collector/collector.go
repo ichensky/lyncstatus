@@ -17,14 +17,6 @@ import (
 	//"time"
 )
 
-// conectionString ...
-func ConectionString(pgpass *configManager.Pgpass) string {
-	return "host=" + pgpass.Host +
-		"port=" + pgpass.Port +
-		"user=" + pgpass.Username +
-		"password=" + pgpass.Password
-}
-
 // checkerr( ...
 func checkerr(err error) {
 	if err != nil {
@@ -35,13 +27,13 @@ func checkerr(err error) {
 // main ...
 func main() {
 
-	c, err := configManager.ReadConfig("collector.cfg")
+	c, err := configManager.ReadDbConfig("db.cfg")
 	checkerr(err)
 	fmt.Println(c.Pgpass)
 
-	db, err := sql.Open("postgres",
-		"user=lyncspy dbname=lyncspydb host=localhost "+
-			"port=5432 password=lyncspy_")
+	connectionString := configManager.ConectionString(c.Pgpass)
+
+	db, err := sql.Open("postgres", connectionString)
 	if err != nil {
 		log.Fatal("Error: The data source arguments are not valid")
 	}

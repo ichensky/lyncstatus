@@ -1,5 +1,5 @@
 # Config-specific files
-/etc/usr/*
+usr/*
 
 # User-specific files
 *.suo

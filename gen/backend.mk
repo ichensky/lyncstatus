@@ -6,7 +6,7 @@ backend_collector_cfg=$(backend_cfg)/collector.cfg
 
 backend_collector=collector
 backend_bin=$(backend)/bin
-backend_collector_app=$(backend_bin)/lyncspycollector
+backend_collector_app=$(bin)/lyncspycollector
 
 backend_build: backend_build_collector
 
@@ -21,3 +21,4 @@ backend_get_packages:
 backend_clean:
 	rm -rf bin
 	rm -rf ${PWD}/$(backend)/packages
+
