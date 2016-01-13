@@ -32,6 +32,7 @@ func main() {
 	fmt.Println(c.Pgpass)
 
 	connectionString := configManager.ConectionString(c.Pgpass)
+	fmt.Println(connectionString)
 
 	db, err := sql.Open("postgres", connectionString)
 	if err != nil {

@@ -6,7 +6,7 @@ import (
 	//_ "github.com/BurntSushi/toml"
 	//"io/ioutil"
 	"errors"
-	//"log"
+	_ "log"
 	"os"
 	//"pgpass"
 	"strings"
@@ -27,6 +27,7 @@ func somefunc() {
 }
 
 func readPasswordFromPgpass(line string) (string, error) {
+
 	home := os.Getenv("HOME")
 	file, err := os.Open(home + "/.pgpass")
 	if err != nil {
@@ -64,9 +65,10 @@ func readPgpass(str string) (*Pgpass, error) {
 
 func ConectionString(pgpass *Pgpass) string {
 	return "host=" + pgpass.Host +
-		"port=" + pgpass.Port +
-		"user=" + pgpass.Username +
-		"password=" + pgpass.Password
+		" port=" + pgpass.Port +
+		" database= " + pgpass.Database +
+		" user=" + pgpass.Username +
+		" password=" + pgpass.Password
 }
 
 // readConfig ...
@@ -96,9 +98,9 @@ func ReadDbConfig(filename string) (*Config, error) {
 				return nil, err
 			}
 			c.Pgpass = pgpass
-
+			return c, nil
 		}
 	}
 
-	return c, scanner.Err()
+	return nil, scanner.Err()
 }
