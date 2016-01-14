@@ -6,12 +6,15 @@ backend_collector_cfg=$(backend_cfg)/collector.cfg
 
 backend_collector=collector
 backend_bin=$(backend)/bin
-backend_collector_app=$(bin)/lyncspycollector
 
-backend_build: backend_build_collector
+backend_build: backend_build_collector backend_build_report
 
 backend_build_collector:
-	go build -v -o $(backend_collector_app) \
+	go build -v -o $(bin)/lyncspycollector \
+		$(backend_collector)
+
+backend_build_report:
+	go build -v -o $(bin)/lyncspyreport \
 		$(backend_collector)
 
 backend_get_packages:
@@ -19,6 +22,5 @@ backend_get_packages:
 	go get -d -u -v github.com/lib/pq
 
 backend_clean:
-	rm -rf bin
 	rm -rf ${PWD}/$(backend)/packages
 
